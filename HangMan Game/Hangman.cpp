@@ -41,36 +41,36 @@ int main()
     cout << "\n\nYou have " << MAX_TRIES << " tries to try and guess the word.";
     cout << "\n...........................................";
 
-   // ...
+    // Loop until the guesses are used up
+    while (num_of_wrong_guesses < MAX_TRIES)
+    {
+        cout << "\n\n" << unknown;
+        cout << "\n\nGuess a letter: ";
+        cin >> letter;
+        // Fill secret word with letter if the guess is correct,
+        // Otherwise increment the number of wrong guesses.
+        if (letterFill(letter, word, unknown) == 0)
+        {
+            cout << endl << "Whoops! That letter isn't in there!" << endl;
+            num_of_wrong_guesses++;
+        }
+        else
+        {
+            cout << endl << "You found a letter! Isn't that exciting!" << endl;
+        }
+        // Tell the user how many guesses have left.
+        cout << "You have " << MAX_TRIES - num_of_wrong_guesses;
+        cout << " guesses left." << endl;
+        // Check if the user guessed the word.
+        if (word == unknown)
+        {
+            cout << word << endl;
+            cout << "Yeah! You got it!";
+            break; // Corrected placement of break statement
+        }
+    }
 
-// Loop until the guesses are used up
-while (num_of_wrong_guesses < MAX_TRIES)
-{
-    cout << "\n\n" << unknown;
-    cout << "\n\nGuess a letter: ";
-    cin >> letter;
-    // Fill secret word with letter if the guess is correct,
-    // Otherwise increment the number of wrong guesses.
-    if (letterFill(letter, word, unknown) == 0)
-    {
-        cout << endl << "Whoops! That letter isn't in there!" << endl;
-        num_of_wrong_guesses++;
-    }
-    else
-    {
-        cout << endl << "You found a letter! Isn't that exciting!" << endl;
-    }
-    // Tell the user how many guesses have left.
-    cout << "You have " << MAX_TRIES - num_of_wrong_guesses;
-    cout << " guesses left." << endl;
-    // Check if the user guessed the word.
-    if (word == unknown)
-    {
-        cout << word << endl;
-        cout << "Yeah! You got it!";
-        break; // Corrected placement of break statement
-    }
-    }
+    // Move this closing brace here
     if (num_of_wrong_guesses == MAX_TRIES)
     {
         cout << "\nSorry, you lose ... you've been hanged.";
